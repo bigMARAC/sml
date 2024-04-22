@@ -29,7 +29,7 @@ public class Simpletron {
             System.out.printf("%02d ? ", count);
             word = input.nextInt();
             memory.add(count++, word);
-        } while (!word.equals(-99999) && count <= 10);
+        } while (!word.equals(-99999) && count < 100);
         
         System.out.println("*** Program loading completed ***\n*** Program execution begins ***");
     }
@@ -65,6 +65,7 @@ public class Simpletron {
             case 10:
                 System.out.println("Enter an integer: ");
                 memory.add(operand, input.nextInt());
+                memory.remove(operand + 1);
                 break;
                 // return "READ";
             case 11:
@@ -119,12 +120,14 @@ public class Simpletron {
     }
     
     public ArrayList<Integer> getMemory() {
-        System.err.println("REGISTERS: \n");
-        System.err.printf("accumulator: %d\n", accumulator);
-        System.err.printf("instructionCounter: %d\n", instructionCounter);
-        System.err.printf("instructionRegister: %d\n", instructionRegister);
-        System.err.printf("operationCode: %d\n", operationCode);
-        System.err.printf("operand: %d\n", operand);
+        System.out.println("REGISTERS:");
+        System.out.printf("accumulator: %d\n", accumulator);
+        System.out.printf("instructionCounter: %02d\n", instructionCounter);
+        System.out.printf("instructionRegister: +%d\n", instructionRegister);
+        System.out.printf("operationCode: %02d\n", operationCode);
+        System.out.printf("operand: %02d\n", operand);
+        System.out.println("MEMORY:");
+        System.out.println(this.memory);
         return this.memory;
     }
 }
